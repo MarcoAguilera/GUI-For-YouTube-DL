@@ -17,8 +17,8 @@ def optionPage():
     
 @app.route("/option", methods=['GET','POST'])
 def optionPagePost():
-    html = request.form.get('videoQuality')
-    print (str(html))
+    select = request.form.getlist("VideoQuality")
+    print (str(select))
     
 if __name__ == '__main__':
     app.run(
