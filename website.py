@@ -11,16 +11,14 @@ def mainPagePost():
     html = request.form['html']
     print (html)
     
-@app.route("/options")
+@app.route("/option")
 def optionPage():
-    return render_template("optionPage.html")
+    return render_template("select.html")
     
-#@app.route("/option", Methods=["POST"])
-#def optionPagePost():
-    #
-    #
-    #
-    #
+@app.route("/option", methods=['GET','POST'])
+def optionPagePost():
+    html = request.form.get('videoQuality')
+    print (str(html))
     
 if __name__ == '__main__':
     app.run(
