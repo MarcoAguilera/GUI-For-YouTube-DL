@@ -1,4 +1,5 @@
 import os
+from YTBack_End import find
 from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ def mainPage():
 def mainPagePost():
     html = request.form['html']
     print (html)
+    find(html)
     return redirect(url_for('optionPage'))
     
 @app.route("/option")
@@ -22,6 +24,7 @@ def optionPagePost():
     html = request.form.get('videoQuality')
     print ("got it")
     print (str(html))
+    find(html)
     return redirect(url_for('mainPage'))
     
 if __name__ == '__main__':
