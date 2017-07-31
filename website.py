@@ -25,6 +25,7 @@ def optionPagePost():
     print ("got it")
     print (str(html))
     return redirect(url_for('mainPage'))
+
     
 if __name__ == '__main__':
     app.run(
