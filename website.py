@@ -24,7 +24,6 @@ def optionPagePost():
     html = request.form.get('videoQuality')
     print ("got it")
     print (str(html))
-    find(html)
     return redirect(url_for('mainPage'))
     
 if __name__ == '__main__':
@@ -32,5 +31,4 @@ if __name__ == '__main__':
         debug=True,
         port=int(os.getenv('PORT', 8080)),
         host=os.getenv('IP', '0.0.0.0')
-    )
-    
+        )
