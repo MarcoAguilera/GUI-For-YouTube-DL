@@ -1,7 +1,9 @@
 import os
-from YTBack_End import find
+from YTBack_End import get_info
 from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
+
+info = "" 
 
 @app.route("/")
 def mainPage():
@@ -9,21 +11,21 @@ def mainPage():
     
 @app.route("/", methods=['POST'])
 def mainPagePost():
-    html = request.form['html']
-    print (html)
-    find(html)
+    url = request.form['url']
+    print (url)
+    global info
+    info = get_info(url)
+    print ("*******************************************************************")
+    print info
     return redirect(url_for('optionPage'))
     
 @app.route("/option")
 def optionPage():
-    return render_template("select.html")
+    return render_template("select.html" , display_info = info)
     
 @app.route("/option", methods=['POST'])
 def optionPagePost():
-    print ('in post')
     html = request.form.get('videoQuality')
-    print ("got it")
-    print (str(html))
     return redirect(url_for('mainPage'))
 
     
