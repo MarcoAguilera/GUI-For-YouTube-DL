@@ -1,5 +1,5 @@
 import os
-from YTBack_End import get_info
+from YTBack_End import store_info
 from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
@@ -14,14 +14,19 @@ def mainPagePost():
     url = request.form['url']
     print (url)
     global info
-    info = get_info(url)
+    info = store_info(url)
     print ("*******************************************************************")
     print info
-    return redirect(url_for('optionPage'))
+    return redirect(url_for('textreader'))
+#for testing purposes
+@app.route("/text")
+def textreader():
+    return render_template("readtext.html")
+##############################3
     
 @app.route("/option")
 def optionPage():
-    return render_template("select.html" , display_info = info)
+    return render_template("select.html")
     
 @app.route("/option", methods=['POST'])
 def optionPagePost():
