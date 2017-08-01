@@ -1,5 +1,5 @@
 import os
-from YTBack_End import store_info
+#from YTBack_End import store_info
 from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
@@ -12,12 +12,14 @@ def mainPage():
 @app.route("/", methods=['POST'])
 def mainPagePost():
     url = request.form['url']
+    option = request.form['select']
     print (url)
+    print (option)
     global info
-    info = store_info(url)
+   # info = store_info(url)
     print ("*******************************************************************")
     print info
-    return redirect(url_for('textreader'))
+    return redirect(url_for('mainPage'))
 #for testing purposes
 @app.route("/text")
 def textreader():
