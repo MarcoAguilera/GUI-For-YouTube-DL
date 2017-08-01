@@ -1,5 +1,5 @@
 import os
-#from YTBack_End import store_info
+#from YTBack_End import store_info  MARCO dont forget to include the functions
 from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
@@ -13,27 +13,23 @@ def mainPage():
 def mainPagePost():
     url = request.form['url']
     option = request.form['select']
+    print ("*******************************************************************")
     print (url)
     print (option)
-    global info
-   # info = store_info(url)
     print ("*******************************************************************")
-    print info
+    #-----------------------------------------------------------#
+    #marco
+    #can you add some functions here to download the best audio/video depending on the input?
+    if(option == 'audio'):
+        print ('mp3')
+    else:
+        print ('video')
+    #instead of te print tatement just call your function and use the url variable as the parameter
     return redirect(url_for('mainPage'))
-#for testing purposes
-@app.route("/text")
-def textreader():
-    return render_template("readtext.html")
-##############################3
     
 @app.route("/option")
 def optionPage():
     return render_template("select.html")
-    
-@app.route("/option", methods=['POST'])
-def optionPagePost():
-    html = request.form.get('videoQuality')
-    return redirect(url_for('mainPage'))
 
     
 if __name__ == '__main__':
