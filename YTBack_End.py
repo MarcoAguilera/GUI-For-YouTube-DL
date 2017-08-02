@@ -37,9 +37,7 @@ class Store_Info(object):
         subprocess.Popen(['youtube-dl', '-f', str(self.format_code), self.link])
     
     def download_best_audio(self):
-         subprocess.Popen(['youtube-dl', '-f', 'bestaudio', self.link])
+         subprocess.Popen(['youtube-dl', '-f', '139/140/bestaudio', self.link])
          
     def download_best_video(self):
-        subprocess.Popen(['youtube-dl', '-f', 'bestvideo', self.link])
-        
-        
+        subprocess.Popen(['youtube-dl', '-f', '137/22/237/bestvideo', self.link])
