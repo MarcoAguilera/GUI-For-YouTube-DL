@@ -1,9 +1,10 @@
 import os
-#from YTBack_End import store_info  MARCO dont forget to include the functions
+from YTBack_End import Store_Info  
 from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
 info = "" 
+current = Store_Info()
 
 @app.route("/")
 def mainPage():
@@ -11,20 +12,20 @@ def mainPage():
     
 @app.route("/", methods=['POST'])
 def mainPagePost():
-    url = request.form['url']
-    option = request.form['select']
+    current.set_link(request.form['url'])
+    current.set_option(request.form['select'])
+    #-----------------------Test Purposes------------------------#
     print ("*******************************************************************")
-    print (url)
-    print (option)
+    print (current.get_link())
+    print (current.get_option())
     print ("*******************************************************************")
     #-----------------------------------------------------------#
-    #marco
-    #can you add some functions here to download the best audio/video depending on the input?
-    if(option == 'audio'):
-        print ('mp3')
+
+    if(current.get_option() == 'audio'):
+        current.download_best_audio()
     else:
-        print ('video')
-    #instead of te print tatement just call your function and use the url variable as the parameter
+        current.download_best_video()
+        
     return redirect(url_for('mainPage'))
     
 @app.route("/option")
